@@ -1,0 +1,74 @@
+notes on the luhn checksum problem on page 31.
+
+examples of input numbers classification of each input digit as an even (0) or odd (1) position:
+
+
+721762
+654321
+212121
+
+72176
+54321
+12121
+
+18
+21
+
+104
+321
+
+example of receiving input digits and computing answers for even length and odd length. we don't know whether the whole input will be even length or odd length until the end. we track two answers, one for each possibility. "as" is the answer assuming the first digit is a (s)ingle (i.e. not doubled), and "ad" is the answer assuming the first digit gets doubled. the answer "as" is the checksum when the input number is odd length, and the answer "ad" is the checksum when the input number is even length.
+
+the example input is 5462, but we only receive the numbers one at a time, and must update "as" and "ad" as the digits arrive.
+
+to start,
+
+as = 0
+ad = 0
+
+since no digits seen so far.
+
+the first digit entered is 5,
+so we update "as" and "ad" as follows:
+
+as = as + 5 = 0 + 5 = 5
+ad = as + 2*5 = 0 + 10 = 1
+
+the second digit entered is 4:
+
+4
+
+as = as + 4*2 = 5 + 8 = 13 = 4
+ad = ad + 4 = 1 + 4 = 5
+
+the third digit entered is 6:
+
+6
+
+as = as + 6 = 4 + 6 = 10 = 1
+ad = ad + 2*6 = 5 + 12 = 17 = 8
+
+the fourth digit entered is 2:
+
+2
+
+as = as + 2*2 = 1 + 4 = 5
+ad = ad + 2 = 8 + 2 = 10 = 1
+
+<end of input>
+
+so complete number is 
+
+5462
+
+so even odd classification, starting from the right, is
+
+5462
+0101
+
+so first digit (the 5) gets doubled, so answer is ad, which 1, which is not divisible by 10, so bad checksum!
+
+unjustified conjecture: we can just add up all the digits, doubling as needed, and then do the collapsing at the end. it works for our example:
+
+as = 5 + 4*2 + 6 + 2*2 = 23 = 5
+ad = 2*5 + 4 + 2*6 + 2 = 28 = 10 = 1

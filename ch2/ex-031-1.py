@@ -31,7 +31,8 @@ def double(d):
 
 def solution(input):
 	# Answer when the input has even length
-	answer = 0
+	answer_even_length = 0
+	answer_odd_length = 0
 	count = 0
 	position = 'even'
 
@@ -39,15 +40,21 @@ def solution(input):
 		count = count + 1
 		d = int(c)
 		if position == 'odd':
-			answer = answer + d
+			answer_even_length = answer_even_length + d
+			answer_odd_length = answer_odd_length + double(d)
 			position = "even"
 		else:
-			answer = answer + double(d)
+			answer_even_length = answer_even_length + double(d)
+			answer_odd_length = answer_odd_length + d
 			position = 'odd'
-	print answer
-	# The checksum is good if it's divible by 10.
-	return (answer % 10) == 0
+	print answer_even_length
 
+	even_length = (count % 2) == 0
+	if even_length:
+	# The checksum is good if it's divible by 10.
+		return (answer_even_length % 10) == 0
+	else:
+		return (answer_odd_length % 10) == 0
 
 def main():
 	input = raw_input("Enter a number: ") # sys.stdin.readline()
