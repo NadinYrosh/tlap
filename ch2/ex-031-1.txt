@@ -4,11 +4,11 @@ examples of input numbers classification of each input digit as an even (0) or o
 
 
 721762
-654321
+654321 - position
 212121
 
 72176
-54321
+54321 - position
 12121
 
 18

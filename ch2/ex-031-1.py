@@ -8,7 +8,7 @@ def oracle(input):
 			return double(d)
 		else:
 			return d
-	checksum = sum(maybe_double(i+1,int(c)) 
+	checksum = sum(maybe_double(i+1,int(c))
 		for (i,c) in enumerate(reversed(input)))
 	return checksum % 10 == 0
 
@@ -27,13 +27,14 @@ def double(d):
 	if d * 2 >= 10:
 		return ((d * 2) - 10) + 1
 	else:
-		return d * 2 
+		return d * 2
 
 def solution(input):
 	# Answer when the input has even length
 	answer_even_length = 0
 	answer_odd_length = 0
 	count = 0
+	# we just assume that entered number has even length
 	position = 'even'
 
 	for c in input:
@@ -47,8 +48,7 @@ def solution(input):
 			answer_even_length = answer_even_length + double(d)
 			answer_odd_length = answer_odd_length + d
 			position = 'odd'
-	print answer_even_length
-
+#
 	even_length = (count % 2) == 0
 	if even_length:
 	# The checksum is good if it's divible by 10.
@@ -57,8 +57,9 @@ def solution(input):
 		return (answer_odd_length % 10) == 0
 
 def main():
-	input = raw_input("Enter a number: ") # sys.stdin.readline()
+	input = raw_input("Enter a numbers: ") # sys.stdin.readline()
 	solution(input)
+	print "The number you entered is valid: %s" % solution(input)
 
 if __name__ == '__main__':
 	main()
